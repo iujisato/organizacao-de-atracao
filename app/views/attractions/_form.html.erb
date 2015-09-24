@@ -1,0 +1,39 @@
+<%= form_for(@attraction) do |f| %>
+  
+
+<h5>
+<div class="form-inline">
+  <div class="form-group">  
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Write the name of the attraction" %>
+  </div>
+</div>
+<br>
+<div class="form-inline">
+  <div class="form-group">
+    <%= f.label :media %>
+    <%= f.text_field :media, class: "form-control" %>
+  </div>
+</div>
+<br>
+
+<br>
+<div class="form-inline">
+  <div class="form-group">
+    <%= f.label :time %>
+    <%= f.date_select :time, 
+                          :order => [:day, :month, :year], 
+                          class: "form-control" %>
+    <%= f.time_select :time, 
+                      :ignore_date => true,
+                      :minute_step => 15,
+                      :include_blank => true,
+                      class: "form-control" %>
+  </div>
+</div>
+  <br>
+  <br>  
+  <%= f.submit "Create Attraction", class: "btn btn-primary" %>
+
+
+<% end %>
