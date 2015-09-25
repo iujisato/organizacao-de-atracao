@@ -1,0 +1,22 @@
+<h1>User Info</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Joined at:</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @user.name %></td>
+        <td><%= @user.email %></td>
+        <td><%= @user.created_at.strftime("%d %B %Y") %></td>
+        <td><%= link_to 'Edit', root_path, class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Delete', @user, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
+        <%= link_to 'New Attraction', new_user_attraction_path(@user), class: "btn btn-primary" %>
+      </tr>
+  </tbody>
+</table>

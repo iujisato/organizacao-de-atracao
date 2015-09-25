@@ -19,8 +19,8 @@
         <td><%= attraction.time.strftime("%d %B %Y") %></td>
         <td><%= attraction.time.strftime("%H:%M") %></td>
         <td><%= attraction.user.email %></td>
-        <td><%= link_to 'Edit', edit_attraction_path(attraction), class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Delete', attraction, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_user_attraction_path(@user, attraction), class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Delete', user_attraction_path(@user, attraction), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Attraction', new_attraction_path, class: "btn btn-primary" %>
+<%= link_to 'New Attraction', new_user_attraction_path(@user), class: "btn btn-primary" %>

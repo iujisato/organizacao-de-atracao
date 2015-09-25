@@ -10,7 +10,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr class="warning">
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, user_path(user) %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.time.strftime("%d %B %Y") %></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning btn-xs" %></td>

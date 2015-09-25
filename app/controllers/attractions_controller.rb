@@ -5,29 +5,30 @@ before_filter :authorize_user, only: [:destroy]
 ## before_filter :filter_blank_time, only: [:create, :update]
 ##  def filter_blank_time
 ##    if params[:time]['end_time(5i)'].blank?
-##       params[:time]['end_time(1i)'] = ""
-##       params[:time]['end_time(2i)'] = ""
-##       params[:time]['end_time(3i)'] = ""
 ##       params[:time]['end_time(4i)'] = ""
 ##       params[:time]['end_time(5i)'] = ""
 ##    end
 ##  end
 
   def index
+    @user = User.find(params[:user_id])
     @attractions = Attraction.where("time >= ?", Time.now)
                              .order(:time)
   end
 
   def new
-    @attraction = Attraction.new
+    @user = User.find(params[:user_id])
+    @attraction = @user.attractions.build
   end
 
   def edit
+    @user = User.find(params[:user_id])
     @attraction = Attraction.find(params[:id])
   end
 
   def create
-    @attraction = current_user.attractions.build(attraction_params)
+    @user = User.find(params[:user_id])
+    @attraction = @user.attractions.build(attraction_params)
     if @attraction.save
       flash[:success] = 'Attraction was successfully created.'
     else
