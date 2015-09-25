@@ -1,0 +1,25 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Media</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr class="warning">
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.time.strftime("%d %B %Y") %></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Delete', user, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path, class: "btn btn-primary" %>

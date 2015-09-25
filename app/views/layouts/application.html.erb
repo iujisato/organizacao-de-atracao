@@ -48,13 +48,14 @@
         <a class="navbar-brand" href= "/">Tracker</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
-           
-              <li><%= link_to 'Employees', root_url %></li>
-              <li><%= link_to 'TFL', root_url %></li>
-              <li><%= link_to 'Cash', root_url %></li>
-              <li><%= link_to "New company", root_url %></li>
-              <li><%= link_to "Login", root_url %></li>
-            
+
+            <% if current_user %>
+              <li><a>Logged as <%= current_user.name %></a></li>
+              <li><%= link_to 'Logout', users_login_path, method: :delete, confirm: "Are you sure?" %></li>
+            <% else %>
+              <li><%= link_to "New User", new_user_path %></li>
+              <li><%= link_to "Login", users_login_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>

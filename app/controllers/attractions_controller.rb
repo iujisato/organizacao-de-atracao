@@ -1,4 +1,5 @@
 class AttractionsController < ApplicationController
+before_filter :authorize_user, only: [:destroy]
 
 
 ## before_filter :filter_blank_time, only: [:create, :update]
@@ -26,7 +27,7 @@ class AttractionsController < ApplicationController
   end
 
   def create
-    @attraction = Attraction.new(attraction_params)
+    @attraction = current_user.attractions.build(attraction_params)
     if @attraction.save
       flash[:success] = 'Attraction was successfully created.'
     else
@@ -45,13 +46,18 @@ class AttractionsController < ApplicationController
   end
 
   def destroy
-    @attraction = Attraction.find(params[:id])
+    @attraction = current_user.attractions.find(params[:id])
     @attraction.destroy
     redirect_to root_url
   end
 
   private
 
+    def authorize_user
+      unless current_user
+        redirect_to root_path, alert: "You need to login to continue."
+      end
+    end
 
     def attraction_params
       params.require(:attraction).permit(:name, :media, :time)
