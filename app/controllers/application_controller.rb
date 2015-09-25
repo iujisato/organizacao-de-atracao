@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :current_user
+
+  def authorize_user
+    unless current_user
+      redirect_to root_path, alert: "You need to login to continue."
+    end
+  end
 end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+before_filter :authorize_user, only: [:edit, :update, :destroy]
+before_filter :correct_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user.users.find(params[:id])
     if @user.update(user_params)
       flash[:success] = 'User was successfully updated.'
       redirect_to root_url
@@ -48,5 +49,11 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
+      flash[:danger] = "You are not authorized to do this."
     end
 end

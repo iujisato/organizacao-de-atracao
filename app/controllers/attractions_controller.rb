@@ -54,12 +54,6 @@ before_filter :authorize_user, only: [:destroy]
 
   private
 
-    def authorize_user
-      unless current_user
-        redirect_to root_path, alert: "You need to login to continue."
-      end
-    end
-
     def attraction_params
       params.require(:attraction).permit(:name, :media, :time)
     end
