@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-has_many :attractions
+has_many :attractions, dependent: :delete_all
 validates_presence_of :email, :name, :password
 validates_uniqueness_of :email
 validates_length_of :password, minimum: 6
