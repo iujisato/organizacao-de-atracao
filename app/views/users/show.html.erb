@@ -38,7 +38,7 @@
   </thead>
 
   <tbody>
-    <% @user.attractions.each do |attraction| %>
+    <% @attractions.each do |attraction| %>
       <tr class="warning">
         <td><%= attraction.name %></td>
         <td><%= attraction.media %></td>
@@ -46,12 +46,12 @@
         <td><%= attraction.time.strftime("%d %B %Y") %></td>
         <td><%= attraction.time.strftime("%H:%M") %></td>
         <td><%= link_to 'Edit', edit_user_attraction_path(@user, attraction), class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'New Attraction', new_user_attraction_path(@user), class: "btn btn-primary btn-xs" %></td>
         <% if current_user == @user %>      
         <td><%= link_to 'Delete', user_attraction_path(@user, attraction), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
+      <td><%= link_to 'New Attraction', new_user_attraction_path(@user), class: "btn btn-primary" %></td>
   </tbody>
 </table>
 

@@ -12,6 +12,8 @@ before_filter :correct_user, only: [:edit, :update, :destroy]
 
   def show
     @user = User.find(params[:id])
+    @attractions = @user.attractions.where("time >= ?", Time.now)
+                                    .order(:time)
   end
 
   def edit

@@ -31,6 +31,7 @@ before_filter :authorize_user, only: [:destroy]
     @attraction = @user.attractions.build(attraction_params)
     if @attraction.save
       flash[:success] = 'Attraction was successfully created.'
+      redirect_to user_path(@user)
     else
       flash[:danger] = 'There was a problem creating the Attraction.'
     end
@@ -49,7 +50,7 @@ before_filter :authorize_user, only: [:destroy]
   def destroy
     @attraction = current_user.attractions.find(params[:id])
     @attraction.destroy
-    redirect_to root_url
+    redirect_to user_path(current_user)  
   end
 
   private

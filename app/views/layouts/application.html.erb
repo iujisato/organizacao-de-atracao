@@ -51,6 +51,9 @@
 
             <% if current_user %>
               <li><a>Logged as <%= current_user.name %></a></li>
+              <li><%= link_to 'My Attractions', user_path(current_user) %>
+              <li><%= link_to 'All Attractions', user_attractions_path(current_user) %>
+              <li><%= link_to 'All Users', users_path %>
               <li><%= link_to 'Logout', users_login_path, method: :delete, confirm: "Are you sure?" %></li>
             <% else %>
               <li><%= link_to "New User", new_user_path %></li>
