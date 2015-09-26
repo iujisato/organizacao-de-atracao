@@ -14,7 +14,7 @@ class LoginController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash.now[:alert] = "Invalid e-mail or password."
+      flash.now[:alert] = 'E-mail ou senha inválidos.'
       render action: "new"
     end
   end

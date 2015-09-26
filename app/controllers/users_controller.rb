@@ -24,20 +24,21 @@ before_filter :correct_user, only: [:edit, :update, :destroy]
     @user = User.new(user_params)
     if @user.save
       redirect_to root_path
-      flash[:success] = 'User was successfully created.'
+      flash[:success] = 'Usuário foi criado com sucesso.'
     else
-      flash[:danger] = 'There was a problem creating the User.'
+      flash[:danger] = 'Ocorreu um problema na criação do Usuário.'
       render action: "new"  
     end
   end
 
   def update
-    @user = current_user.users.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
-      flash[:success] = 'User was successfully updated.'
+      flash[:success] = 'Usuário foi modificado com sucesso.'
       redirect_to root_url
     else
-      flash[:danger] = 'There was a problem updating the User.'
+      flash[:danger] = 'Ocorreu um problema modificando o usuário.'
+      redirect_to root_url
     end
   end
 
@@ -55,7 +56,9 @@ before_filter :correct_user, only: [:edit, :update, :destroy]
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless @user == current_user
-      flash[:danger] = "You are not authorized to do this."
+      unless @user == current_user
+        redirect_to(root_url)
+        flash[:danger] = 'Você não tem autorização para fazer isso.'
+      end
     end
 end

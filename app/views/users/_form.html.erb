@@ -1,7 +1,7 @@
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div class="alert alert-error">
-      <h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+      <h3><%= pluralize(@user.errors.count, "error") %> não permitiram que este usuário fosse salvo.</h3>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -12,30 +12,30 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :name, class: 'control-label' %>
+    <%= f.label 'Nome', class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :name %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :email, class: 'control-label' %>
+    <%= f.label 'E-mail', class: 'control-label' %>
     <div class="controls">
       <%= f.text_field :email %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :password, class: 'control-label' %>
+    <%= f.label 'Senha', class: 'control-label' %>
     <div class="controls">
       <%= f.password_field :password %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :password_confirmation, class: 'control-label' %>
+    <%= f.label 'Confirmação de senha', class: 'control-label' %>
     <div class="controls">
       <%= f.password_field :password_confirmation %>
     </div>
   </div>
   <div class="control-group controls">
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= f.submit 'Enviar', class: 'btn btn-primary' %>
   </div>
 <% end %>

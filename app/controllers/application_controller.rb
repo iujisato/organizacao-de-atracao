@@ -7,14 +7,14 @@ class ApplicationController < ActionController::Base
 
   def current_user
     @current_user ||= if session[:user_id]
-    User.find_by_id(session[:user_id])
+      User.find_by_id(session[:user_id])
     end
   end
   helper_method :current_user
 
   def authorize_user
     unless current_user
-      redirect_to root_path, alert: "You need to login to continue."
+      redirect_to root_path, alert: 'Você precista estar logado para continuar.'
     end
   end
 end

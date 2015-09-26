@@ -37,7 +37,6 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -48,22 +47,20 @@
         <a class="navbar-brand" href= "/">Tracker</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
-
             <% if current_user %>
-              <li><a>Logged as <%= current_user.name %></a></li>
-              <li><%= link_to 'My Attractions', user_path(current_user) %>
-              <li><%= link_to 'All Attractions', user_attractions_path(current_user) %>
-              <li><%= link_to 'All Users', users_path %>
+              <li><a>Logado como <%= current_user.name %></a></li>
+              <li><%= link_to 'Minhas Atrações', user_path(current_user) %>
+              <li><%= link_to 'Todas as Atrações', user_attractions_path(current_user) %>
+              <li><%= link_to 'Todos os Usuários', users_path %>
               <li><%= link_to 'Logout', users_login_path, method: :delete, confirm: "Are you sure?" %></li>
             <% else %>
-              <li><%= link_to "New User", new_user_path %></li>
+              <li><%= link_to "Novo Usuário", new_user_path %></li>
               <li><%= link_to "Login", users_login_path %></li>
             <% end %>
           </ul>
         </div>
       </div>
     </div>
-
     <div class="container">
       <div class="row">
         <div class="col-lg-9">

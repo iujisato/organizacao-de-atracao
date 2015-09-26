@@ -1,61 +1,53 @@
-<h1>User Info</h1>
-
+<h1>Informações do Usuário</h1>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nome</th>
       <th>E-mail</th>
-      <th>Joined at:</th>
+      <th>Registrou em:</th>
     </tr>
   </thead>
-
   <tbody>
-      <tr>
-        <td><%= @user.name %></td>
-        <td><%= @user.email %></td>
-        <td><%= @user.created_at.strftime("%d %B %Y") %></td>
-        <% if current_user == @user %>
-        <td><%= link_to 'Edit', root_path, class: "btn btn-warning btn-xs" %></td>
-        <td><%= link_to 'Delete', @user, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-  </tbody>
-</table>
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#myattractions">
-          <%= "#{@user.name}'s Attractions" %>
-        </button>
- 
-        <div id="myattractions" class="collapse in">
-         <table class="table table-hover">
-  <thead>
     <tr>
-      <th>Name</th>
-      <th>Media</th>
-      <th>Weekday</th>
-      <th>Date</th>
-      <th>Hour</th>
+      <td><%= @user.name %></td>
+      <td><%= @user.email %></td>
+      <td><%= @user.created_at.strftime("%d %B %Y") %></td>
+      <% if current_user == @user %>
+        <td><%= link_to 'Editar', edit_user_path(@user), class: "btn btn-warning btn-xs" %></td>
+        <td><%= link_to 'Deletar', @user, method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Você tem certeza?' } %></td>
+      <% end %>
     </tr>
-  </thead>
-
-  <tbody>
-    <% @attractions.each do |attraction| %>
-      <tr class="warning">
-        <td><%= attraction.name %></td>
-        <td><%= attraction.media %></td>
-        <td><%= attraction.time.strftime("%A") %></td>
-        <td><%= attraction.time.strftime("%d %B %Y") %></td>
-        <td><%= attraction.time.strftime("%H:%M") %></td>
-        <td><%= link_to 'Edit', edit_user_attraction_path(@user, attraction), class: "btn btn-warning btn-xs" %></td>
-        <% if current_user == @user %>      
-        <td><%= link_to 'Delete', user_attraction_path(@user, attraction), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-      <td><%= link_to 'New Attraction', new_user_attraction_path(@user), class: "btn btn-primary" %></td>
   </tbody>
 </table>
-
-<br>
-         <br>
-         <br>
-        </div>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#myattractions">
+  <%= "Atrações de #{@user.name}" %>
+</button>
+<div id="myattractions" class="collapse out">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Mídia</th>
+        <th>Dia da Semana</th>
+        <th>Data</th>
+        <th>Hora</th>
+     </tr>
+    </thead>
+    <tbody>
+      <% @attractions.each do |attraction| %>
+        <tr class="warning">
+          <td><%= attraction.name %></td>
+          <td><%= attraction.media %></td>
+          <td><%= attraction.time.strftime("%A") %></td>
+          <td><%= attraction.time.strftime("%d %B %Y") %></td>
+          <td><%= attraction.time.strftime("%H:%M") %></td>
+          <td><%= link_to 'Editar', edit_user_attraction_path(@user, attraction), class: "btn btn-warning btn-xs" %></td>
+          <% if current_user == @user %>      
+          <td><%= link_to 'Deletar', user_attraction_path(@user, attraction), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Você tem certeza?' } %></td>
+          <% end %>
+        </tr>
+       <% end %>
+       <td><%= link_to 'Nova Atração', new_user_attraction_path(@user), class: "btn btn-primary" %></td>
+     </tbody>
+   </table>
+</div>
