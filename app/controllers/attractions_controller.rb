@@ -45,7 +45,7 @@ before_filter :authorize_user, only: [:destroy]
     redirect_to user_path(current_user)  
   end
 
-  private
+private
 
     def attraction_params
       params.require(:attraction).permit(:name, :media, :time)

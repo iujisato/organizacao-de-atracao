@@ -9,7 +9,6 @@
       <th>Criado por:</th>
     </tr>
   </thead>
-
   <tbody>
     <% @attractions.each do |attraction| %>
       <tr class="warning">
@@ -27,7 +26,5 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'Nova Atração', new_user_attraction_path(@user), class: "btn btn-primary" %>
